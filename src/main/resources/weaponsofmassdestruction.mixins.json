@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "oceanic.weaponsofmassdestruction.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "weaponsofmassdestruction.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
