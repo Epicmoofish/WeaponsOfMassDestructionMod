@@ -24,6 +24,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import oceanic.weaponsofmassdestruction.blocks.TestBlock;
+import oceanic.weaponsofmassdestruction.events.EventHandler;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -34,19 +36,19 @@ public class WOMDMod {
     public static final String MODID = "womd";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
-    // Create a Deferred Register to hold Blocks which will all be registered under the "weaponsofmassdestruction" namespace
+    // Create a Deferred Register to hold Blocks which will all be registered under the "womd" namespace
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
-    // Create a Deferred Register to hold Items which will all be registered under the "weaponsofmassdestruction" namespace
+    // Create a Deferred Register to hold Items which will all be registered under the "womd" namespace
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 
-    // Creates a new Block with the id "weaponsofmassdestruction:example_block", combining the namespace and path
-    public static final RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE)));
-    // Creates a new BlockItem with the id "weaponsofmassdestruction:example_block", combining the namespace and path
+    // Creates a new Block with the id "womd:example_block", combining the namespace and path
+    public static final RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", () -> new TestBlock(BlockBehaviour.Properties.of(Material.STONE)));
+    // Creates a new BlockItem with the id "womd:example_block", combining the namespace and path
     public static final RegistryObject<Item> EXAMPLE_BLOCK_ITEM = ITEMS.register("example_block", () -> new BlockItem(EXAMPLE_BLOCK.get(), new Item.Properties()));
 
     public WOMDMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
+        MinecraftForge.EVENT_BUS.register(EventHandler.class);
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
